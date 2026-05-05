@@ -1,0 +1,36 @@
+<div class="projects">
+    <div class="add-new-project" (click)="show()">
+        <span class="plus">+</span>
+        <p>Nouveau projet</p>
+    </div>
+    @for (project of projects; track project._id){
+        <div class="project-card">
+            <div class="card-header">
+                <h3>{{ project.title }}</h3>
+            </div>
+            <div class="card-body" (click)="project._id && goToProject(project._id)">
+                <p class="description">{{ project.description }}</p>
+            </div>
+            <div class="card-footer">
+                <button class="remove" (click)="project._id && removeProject(project._id)">Supprimer</button>
+                <span class="creator">{{ userName }}</span>
+            </div>
+        </div>
+    }
+
+</div>
+@if(showPopup){
+    <div class="overlay">
+    <div class="popup">
+        <label>titre</label>
+        <input type="text" placeholder="Entrer titre" [(ngModel)]="title">
+        <label>description</label>
+        <input type="text" placeholder="Entrer description" [(ngModel)]="description">
+        <div class="popup-buttons">
+        <button class="create-btn" (click)="create()">Créer</button>
+        <button class="close-btn" (click)="close()">Fermer</button>
+      </div>
+    </div>
+    </div>
+}
+
